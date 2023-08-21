@@ -4,13 +4,20 @@
   "description": "A playground for Express with Parcel.",
   "author": "Roberto Achar <robertoachar@gmail.com>",
   "homepage": "https://github.com/robertoachar/express-parcel#readme",
-  "keywords": ["node", "express", "pug"],
+  "keywords": [
+    "node",
+    "express",
+    "pug"
+  ],
   "main": "src/index.js",
-  "files": ["src"],
+  "files": [
+    "src"
+  ],
   "scripts": {
-    "bundle": "parcel watch assets/scripts/app.js --out-dir=src/public",
+    "bundle": "parcel watch assets/scripts/app.js assets/scripts/new.js --out-dir=src/public",
     "lint": "eslint src/**/*.js",
-    "start": "nodemon src/index.js"
+    "build": "vite build --outDir '/src/public'",
+    "start": "concurrently \"npm run build\" \"nodemon src/index.js\""
   },
   "repository": {
     "type": "git",
@@ -21,16 +28,22 @@
   },
   "dependencies": {
     "bootstrap": "3.3.7",
+    "concurrently": "8.2.0",
     "express": "4.16.2",
+    "gsap": "3.12.2",
     "jquery": "3.2.1",
+    "mime": "3.0.0",
     "pug": "2.0.0-rc.4"
   },
   "devDependencies": {
+    "autoprefixer": "10.4.15",
     "eslint": "4.13.1",
     "eslint-config-prettier": "2.9.0",
+    "eslint-import-resolver-webpack": "^0.13.1",
     "eslint-plugin-prettier": "2.4.0",
     "nodemon": "1.13.3",
     "parcel-bundler": "1.2.1",
+    "postcss": "8.4.28",
     "prettier": "1.9.2"
   },
   "license": "MIT"
