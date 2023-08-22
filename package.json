@@ -16,7 +16,8 @@
   "scripts": {
     "bundle": "parcel watch assets/scripts/app.js assets/scripts/new.js --out-dir=src/public",
     "lint": "eslint src/**/*.js",
-    "build": "vite build --outDir '/src/public'",
+    "build": "vite build --minify -w --outDir src/public",
+    "optimize-images": "imagemin assets/images/* --out-dir=src/public/images && imagemin assets/images/* -o src/public/images --plugin=imagemin-webp --quality=75",
     "start": "concurrently \"npm run build\" \"nodemon src/index.js\""
   },
   "repository": {
@@ -41,10 +42,23 @@
     "eslint-config-prettier": "2.9.0",
     "eslint-import-resolver-webpack": "^0.13.1",
     "eslint-plugin-prettier": "2.4.0",
+    "imagemin": "8.0.1",
+    "imagemin-cli": "7.0.0",
+    "imagemin-gifsicle": "7.0.0",
+    "imagemin-jpegtran": "7.0.0",
+    "imagemin-pngquant": "9.0.2",
+    "imagemin-svgo": "10.0.1",
+    "imagemin-webp": "8.0.0",
     "nodemon": "1.13.3",
     "parcel-bundler": "1.2.1",
     "postcss": "8.4.28",
-    "prettier": "1.9.2"
+    "prettier": "1.9.2",
+    "sharp": "0.32.5",
+    "svgo": "3.0.2",
+    "vite-plugin-image-optimizer": "1.1.7",
+    "vite-plugin-imagemin": "0.6.1",
+    "vite-plugin-vsharp": "1.4.2",
+    "vite-plugin-webp-generator": "0.0.5"
   },
   "license": "MIT"
 }
