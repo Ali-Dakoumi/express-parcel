@@ -1,22 +1,68 @@
-import '../css/styles.css';
-import { gsap } from 'gsap'
-// import image from "../images/dmitry-kropachev-j-tLvS3Xk0I-unsplash.webp"
+import { each } from "lodash"
+import About from "./pages/about"
+import Home from "./pages/home"
+import '../css/styles.scss';
 
-// import imagemin from 'imagemin';
-// import imageminWebp from 'imagemin-webp';
+class App {
+    constructor () {
+      this.createContent()
+      this.createPages()
+      this.addEventListeners()
+    }
 
-// async function name(params) {
-  
-  
-//   await imagemin(['images/*.{jpg,png,webp}'], {
-//     destination: 'src/public/assets/images',
-//     plugins: [
-//       imageminWebp({quality: 50})
-//     ]
-//   });
-//   console.log('Images optimized');
-// }
+    createContent() {
+        this.content = document.querySelector('.content')
+        this.template = this.content.getAttribute('data-template')
+        
+    }
 
-// name()
-gsap.to('.test', 1, { x: 100, color: "red"})
-console.log('It works ccc!');
+    createPages () {
+        console.log('create pages')
+        this.pages = {
+            home: new Home(),
+            about: new About()
+        }
+        this.page = this.pages[this.template]
+        this.page.create()
+    }
+    
+    async onChange (link) {
+        await this.page.hide()
+
+        const newPage = await window.fetch(link)
+        if( newPage.status === 200) {
+            const html = await newPage.text()
+            const div = document.createElement('div')
+            div.innerHTML = html
+            const divContent = div.querySelector('.content')
+            this.template = divContent.getAttribute('data-template')
+            this.content.setAttribute('data-template', this.template)
+            this.content.innerHTML = divContent.innerHTML
+
+            this.page = this.pages[this.template]
+            this.page.create()
+            this.page.show()
+            window.history.pushState(null, null, link);
+
+        } else {
+            console.log('error')
+            throw new Error('couldnt fetch page ', link)
+        }
+
+    }
+
+    async addEventListeners () {
+        const links = document.querySelectorAll('a')
+        each(links, link => {
+            link.onclick = (e) => {
+                e.preventDefault()
+                const {href} = link
+                this.onChange(href)
+            
+                console.log("🚀 ~ file: page.js:47 ~ Page ~ addEventListeners ~ prventDefault:", link)
+            }
+        })
+    }
+}
+
+new App()

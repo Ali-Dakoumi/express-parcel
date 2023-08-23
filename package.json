@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "express-parcel",
   "version": "1.0.0",
   "description": "A playground for Express with Parcel.",
@@ -28,13 +29,16 @@
     "url": "https://github.com/robertoachar/express-parcel/issues"
   },
   "dependencies": {
-    "bootstrap": "3.3.7",
     "concurrently": "8.2.0",
     "express": "4.16.2",
     "gsap": "3.12.2",
     "jquery": "3.2.1",
+    "loadash": "1.0.0",
+    "lodash": "4.17.21",
     "mime": "3.0.0",
-    "pug": "2.0.0-rc.4"
+    "pug": "2.0.0-rc.4",
+    "sass": "1.66.1",
+    "vite": "4.4.9"
   },
   "devDependencies": {
     "autoprefixer": "10.4.15",
@@ -42,23 +46,12 @@
     "eslint-config-prettier": "2.9.0",
     "eslint-import-resolver-webpack": "^0.13.1",
     "eslint-plugin-prettier": "2.4.0",
-    "imagemin": "8.0.1",
-    "imagemin-cli": "7.0.0",
-    "imagemin-gifsicle": "7.0.0",
-    "imagemin-jpegtran": "7.0.0",
-    "imagemin-pngquant": "9.0.2",
-    "imagemin-svgo": "10.0.1",
-    "imagemin-webp": "8.0.0",
     "nodemon": "1.13.3",
     "parcel-bundler": "1.2.1",
     "postcss": "8.4.28",
     "prettier": "1.9.2",
     "sharp": "0.32.5",
-    "svgo": "3.0.2",
-    "vite-plugin-image-optimizer": "1.1.7",
-    "vite-plugin-imagemin": "0.6.1",
-    "vite-plugin-vsharp": "1.4.2",
-    "vite-plugin-webp-generator": "0.0.5"
+    "svgo": "3.0.2"
   },
   "license": "MIT"
 }

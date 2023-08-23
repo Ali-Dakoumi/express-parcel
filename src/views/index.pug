@@ -2,4 +2,11 @@ extends layout
 
 block content
 
-  h1.test #{title}
+  div(data-template='home')#content.content
+    div.home
+      h1.home__title #{title}
+        div.home__content
+          p Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, corrupti enim necessitatibus exercitationem quos error aut, eaque dolor dolore quia consequatur eveniet repudiandae dicta earum? Reprehenderit quod ex omnis quo!
+    ul
+      each product in products
+        li= product.title
