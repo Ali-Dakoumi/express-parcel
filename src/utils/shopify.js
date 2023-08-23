@@ -2,6 +2,15 @@
 const storefrontAccessToken = process.env.SHOPIFY_STOREFRONT_ACCESSTOKEN
 const domain = process.env.SHOPIFY_STORE_DOMAIN
 
+export async function fetchFakeProducts() {
+  try {
+    const response = await axios.get('https://fakestoreapi.com/products');
+    return response.data;
+  } catch (error) {
+    throw new Error('Failed to fetch fake products');
+  }
+}
+
 async function ShopifyData(query, message = "") {
   const URL = `https://${domain}/api/2022-10/graphql.json`;
 

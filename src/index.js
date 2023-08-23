@@ -7,10 +7,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 
-const storefrontAccessToken = process.env.SHOPIFY_STOREFRONT_ACCESSTOKEN
-const domain = process.env.SHOPIFY_STORE_DOMAIN
-
-
 async function fetchFakeProducts() {
   try {
     const response = await axios.get('https://fakestoreapi.com/products');
@@ -19,9 +15,6 @@ async function fetchFakeProducts() {
     throw new Error('Failed to fetch fake products');
   }
 }
-
-
-
 
 const app = express();
 
@@ -33,7 +26,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', async (req, res) => {
-  let products = await fetchFakeProducts()
+  const products = await fetchFakeProducts()
+  console.log("🚀 ~ file: index.js:30 ~ app.get ~ products:", products)
   res.render('index', { title: 'home!', id: "home", class: "home", products });
 });
 app.get('/about', (req, res) => {

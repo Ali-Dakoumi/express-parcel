@@ -1,12 +1,33 @@
 $primary-color: rgb(178, 184, 195);
 $preloader-color: #000000;
+
+@mixin hijack-scroll {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
 body, html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  @include hijack-scroll
 }
 body {
   background-color: $primary-color;
+}
+.about,.home {
+  opacity: 0;
+  @include hijack-scroll
+
+}
+.navigation {
+  z-index: 2;
+  position: fixed;
+  top: 0;
 }
 .preloader {
   display: flex;
@@ -19,7 +40,7 @@ body {
   height: 100%;
   z-index: 10;
   flex-direction: column;
-  display: none;
+  // display: none;
   .preloader__text {
     max-width: 25rem;
     text-align: center;
@@ -28,5 +49,26 @@ body {
     align-self: center;
     position: absolute;
     bottom: 1rem;
+  }
+}
+.content {
+  @include hijack-scroll
+}
+.products__grid {
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  grid-template-rows: 1fr;
+  gap: 1rem;
+  max-width: 98vw;
+  li {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    aspect-ratio: 1;
+    img {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: cover;
+    }
   }
 }
