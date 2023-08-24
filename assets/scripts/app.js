@@ -10,6 +10,8 @@ class App {
         this.createContent()
         this.createPages()
         this.addEventListeners()
+
+        this.update()
     }
 
     createContent() {
@@ -37,6 +39,13 @@ class App {
         console.log('completed')
         this.preloader.destroy()
         this.page.show()
+    }
+
+    update() {
+        if(this.page && this.page.update) {
+            this.page.update()
+        }
+        this.frame = window.requestAnimationFrame(this.update.bind(this))
     }
 
     async onChange(link) {
